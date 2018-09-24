@@ -8,6 +8,11 @@ RUN cp /etc/apk/repositories /etc/apk/repositories.bak \
 	&& pecl install redis xdebug grpc protobuf \
     && docker-php-ext-enable redis xdebug grpc protobuf \
     && docker-php-ext-install pdo_mysql opcache tokenizer gd zip \
+    && curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && wget https://phar.phpunit.de/phpunit-old.phar \
+    && chmod +x phpunit-old.phar \
+    && mv phpunit-old.phar /usr/bin/phpunit \
     && apk del gcc autoconf make  g++
   
 
