@@ -34,6 +34,9 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.
 			php7-zip \
 			php7-pear \
 			php7-dev \
+			php7-fileinfo \
+			gd \
+			php7-gd \
 			composer \
 			make \
 			gcc \
