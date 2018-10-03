@@ -21,7 +21,6 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.
 			php7-opcache \
 			php7-openssl \
 			php7-pdo \
-			php7-pdo_dblib \
 			php7-pdo_mysql \
 			php7-redis \
 			php7-simplexml \
@@ -34,7 +33,6 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.
 			php7-zip \
 			php7-fileinfo \
 			php7-gd \
-			composer \
 			nginx \
 			supervisor
 
