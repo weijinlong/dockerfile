@@ -35,7 +35,7 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.
 			php7-gd \
 			nginx 
 
-
+RUN mkdir /run/nginx
 
 
 # ADD etc/supervisord.conf /etc/supervisord.conf
@@ -43,11 +43,9 @@ ADD etc/fpm-www.conf /etc/php7/php-fpm.d/www.conf
 ADD etc/nginx.conf /etc/nginx/nginx.conf
 ADD etc/php-fpm.conf /etc/php7/php-fpm.conf 
 
-RUN mkdir /run/nginx
+ADD etc/docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 STOPSIGNAL SIGTERM
 
-
-ADD etc/start.sh /start.sh
-RUN chmod 755 /start.sh
-
-CMD ["/start.sh"]
+CMD ["/docker-entrypoint.sh"]
