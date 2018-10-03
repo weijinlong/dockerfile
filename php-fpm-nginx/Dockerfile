@@ -42,9 +42,9 @@ ADD etc/fpm-www.conf /etc/php7/php-fpm.d/www.conf
 ADD etc/nginx.conf /etc/nginx/nginx.conf
 ADD etc/php-fpm.conf /etc/php7/php-fpm.conf 
 
-ADD etc/docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+ADD etc/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 STOPSIGNAL SIGTERM
 
-CMD ["/docker-entrypoint.sh"]
+CMD ["docker-entrypoint.sh"]
