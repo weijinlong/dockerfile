@@ -2,5 +2,3 @@
 
 /usr/sbin/nginx
 /usr/sbin/php-fpm7 --nodaemonize
-
-#tail -f /dev/null

@@ -37,7 +37,6 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.
 
 RUN mkdir /run/nginx
 
-
 # ADD etc/supervisord.conf /etc/supervisord.conf
 ADD etc/fpm-www.conf /etc/php7/php-fpm.d/www.conf
 ADD etc/nginx.conf /etc/nginx/nginx.conf
