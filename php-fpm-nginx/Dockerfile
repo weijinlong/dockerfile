@@ -7,7 +7,6 @@ ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so
 RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.com/alpine/v3.8/community/" > /etc/apk/repositories \
 	&& apk add --update --no-cache \
 			bash \
-			php7 \
 			php7-common \
 			php7-ctype \
 			php7-curl \
