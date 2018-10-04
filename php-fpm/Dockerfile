@@ -7,7 +7,6 @@ ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so
 RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.com/alpine/v3.8/community/" > /etc/apk/repositories \
 	&& apk add --update --no-cache \
 			bash \
-			php7 \
 			php7-common \
 			php7-ctype \
 			php7-curl \
@@ -32,19 +31,8 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.8/main/\nhttp://mirrors.aliyun.
 			php7-xmlwriter \
 			php7-xsl \
 			php7-zip \
-			php7-pear \
-			php7-dev \
 			php7-fileinfo \
-			php7-gd \
-			composer \
-			make \
-			gcc \
-			g++ \
-			zlib-dev \
-	&& pecl install grpc protobuf \
-	&& echo "extension=grpc.so" > /etc/php7/conf.d/grpc.ini \
-	&& echo "extension=protobuf.so" > /etc/php7/conf.d/protobuf.ini \
-	&& apk del gcc g++ make php7-dev php7-pear
+			php7-gd 
 
 
 
