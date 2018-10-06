@@ -1,0 +1,37 @@
+version: '3.2'
+
+services:
+
+  data: 
+    image: codedata:latest
+    command: tail -f /dev/null
+    volumes:
+      - code-data:/var/www/html
+    # restart: always
+
+
+  web:
+    image: nginx:1.13-alpine
+    volumes:
+     - ./nginx:/etc/nginx/conf.d
+     -  code-data:/var/www/html:ro
+    ports:
+     - "80:80"
+    restart: always
+    depends_on:
+      - data
+
+
+  php:
+    image: registry.cn-hangzhou.aliyuncs.com/fire_chasers/php-fpm:0.1
+    volumes:
+     -  code-data:/var/www/html:rw
+    restart: always
+    depends_on:
+      - data
+
+  
+
+
+volumes:
+  code-data:

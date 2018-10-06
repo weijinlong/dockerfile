@@ -1,0 +1,56 @@
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+     - ./mysql:/var/lib/mysql
+    ports:
+     - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+
+  web:
+    image: nginx:1.13-alpine
+    volumes:
+     - ./nginx:/etc/nginx/conf.d
+     -  D:/dev:/var/www/html:ro 
+    ports:
+     - "80:80"
+    restart: always
+    depends_on:
+      - php
+    environment:
+      VIRTUAL_HOST: who.me
+
+  php:
+    # image: registry.cn-hangzhou.aliyuncs.com/fire_chasers/php:7.1-fpm-alpine-ext
+    image: registry.cn-hangzhou.aliyuncs.com/fire_chasers/php-fpm:0.1
+    # image: php-fpm:0.5
+    volumes:
+     -  D:/dev:/var/www/html
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+      # - beanstalkd
+    
+  # php56:
+  #   image: registry.cn-hangzhou.aliyuncs.com/fire_chasers/php:5.6-fpm-alpine-ext
+  #   volumes:
+  #    -  /Users/weijinlong/GIT_HOME:/var/www/html
+  #   restart: always
+
+  redis:
+    image: redis:4-alpine
+    restart: always
+
+  # beanstalkd:
+  #   image: schickling/beanstalkd
+  #   restart: always
+
+

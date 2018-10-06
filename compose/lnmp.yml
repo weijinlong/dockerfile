@@ -1,0 +1,57 @@
+version: '3.1'
+
+services:
+
+  web1:
+    image: registry.cn-hangzhou.aliyuncs.com/fire_chasers/php-fpm:0.1-nginx
+    volumes:
+     -  D:\dev\CodeIgniter-4.0.0-alpha.1:/var/www/html 
+    restart: always
+    expose:
+     - 80
+    environment:
+      VIRTUAL_HOST: ci4.me
+
+  web2:
+    image: registry.cn-hangzhou.aliyuncs.com/fire_chasers/php-fpm:0.1-nginx
+    volumes:
+     -  D:\dev\funxpms_boss:/var/www/html
+    restart: always
+    expose:
+     - 80
+    environment:
+      VIRTUAL_HOST: boss.me
+
+  # proxy:
+  #   image: jwilder/nginx-proxy:alpine
+  #   volumes:
+  #    - /var/run/docker.sock:/tmp/docker.sock:ro
+  #   ports:
+  #    - "80:80"
+  #   restart: always
+
+  mysql:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+     - ./mysql:/var/lib/mysql
+    ports:
+     - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+
+  redis:
+    image: redis:4-alpine
+    restart: always
+
+
+  # beanstalkd:
+  #   image: schickling/beanstalkd
+  #   restart: always
+
+networks:
+  default:
+    external:
+      name: mynet
